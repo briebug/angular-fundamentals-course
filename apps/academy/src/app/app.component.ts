@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Message } from '@bba/api-interfaces';
+import { shareReplay } from 'rxjs/operators';
+import { AuthService } from '@bba/core-data';
+
+export enum SidenavStatus {
+  OPENED = 'opened',
+  DISABLED = 'disabled',
+  CLOSED = 'closed'
+}
 
 @Component({
   selector: 'bba-root',
@@ -8,6 +14,24 @@ import { Message } from '@bba/api-interfaces';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  hello$ = this.http.get<Message>('/api/hello');
-  constructor(private http: HttpClient) {}
+  title = 'BrieBug Students';
+  links = [
+    { path: '/home', icon: 'home', title: 'Home' },
+    { path: '/courses', icon: 'view_list', title: 'Courses' },
+  ];
+
+  isAuthenticated$ = this.authService.isAuthenticated$.pipe(shareReplay(1));
+  sidenavStatus = SidenavStatus.OPENED;
+
+  constructor(private authService: AuthService) { }
+
+  logout() {
+    this.authService.logout();
+  }
+
+  toggleSidenav(status: SidenavStatus | null = null) {
+    this.sidenavStatus = (this.sidenavStatus === SidenavStatus.OPENED) ?
+      SidenavStatus.CLOSED :
+      SidenavStatus.OPENED;
+  }
 }

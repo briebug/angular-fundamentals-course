@@ -1,8 +1,39 @@
-<div style="text-align: center;">
-  <h1>Welcome to academy!</h1>
-  <img
-    width="450"
-    src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png"
-  />
-</div>
-<div>Message: {{ hello$ | async | json }}</div>
+<bba-toolbar
+  [title]="title"
+  [isAuthenticated]="isAuthenticated$ | async"
+  [sidenavEnabled]="sidenavStatus !== 'disabled'"
+  (logout)="logout()"
+  (toggleSidenav)="toggleSidenav()">
+</bba-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav
+    *ngIf="(isAuthenticated$ | async) as authenticated"
+    [opened]="sidenavStatus === 'opened'" mode="side" class="app-sidenav">
+    <ng-container>
+      <span class="logo">
+        <a [routerLink]="'/'">
+          <img src="assets/images/logo.svg" alt="Logo">
+        </a>
+      </span>
+      <nav>
+        <div>
+          <div *ngFor="let link of links">
+            <a mat-button class="nav-link" [routerLink]="link.path" routerLinkActive="active">
+              <mat-icon>
+                {{link.icon}}
+              </mat-icon>
+              <span>
+                {{link.title}}
+              </span>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </ng-container>
+  </mat-sidenav>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</mat-sidenav-container>

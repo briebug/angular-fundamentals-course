@@ -1,0 +1,14 @@
+<div class="courses-containers">
+  <div class="courses-list">
+    <bba-courses-list [courses]="courses$ | async"
+      (selected)="selectCourse($event)"
+      (deleted)="deleteCourse($event)">
+    </bba-courses-list>
+  </div>
+  <div class="course-details">
+    <bba-course-details [course]="selectedCourse"
+      (saved)="saveCourse($event)"
+      (cancelled)="resetCourse()">
+    </bba-course-details>
+  </div>
+</div>
