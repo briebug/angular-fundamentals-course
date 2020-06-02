@@ -1,34 +1,26 @@
-<bba-toolbar
-  [title]="title"
-  [isAuthenticated]="isAuthenticated$ | async"
-  [sidenavEnabled]="sidenavStatus !== 'disabled'"
-  (logout)="logout()"
-  (toggleSidenav)="toggleSidenav()">
-</bba-toolbar>
+<mat-toolbar color="primary" class="mat-elevation-z4">
+  <span>
+    <button mat-mini-fab (click)="sidenav?.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="title">
+      BrieBug Students
+    </span>
+  </span>
+  <span class="spacer"></span>
+  <button mat-mini-fab>
+    <mat-icon>person</mat-icon>
+  </button>
+</mat-toolbar>
 
 <mat-sidenav-container>
-  <mat-sidenav #sidenav
-    *ngIf="(isAuthenticated$ | async) as authenticated"
-    [opened]="sidenavStatus === 'opened'" mode="side" class="app-sidenav">
+  <mat-sidenav #sidenav mode="side" opened class="app-sidenav">
     <ng-container>
       <span class="logo">
-        <a [routerLink]="'/'">
-          <img src="assets/images/logo.svg" alt="Logo">
-        </a>
+        <img src="assets/images/logo.svg" alt="Logo">
       </span>
       <nav>
-        <div>
-          <div *ngFor="let link of links">
-            <a mat-button class="nav-link" [routerLink]="link.path" routerLinkActive="active">
-              <mat-icon>
-                {{link.icon}}
-              </mat-icon>
-              <span>
-                {{link.title}}
-              </span>
-            </a>
-          </div>
-        </div>
+        <!-- NAVIGATION LINKS -->
       </nav>
     </ng-container>
   </mat-sidenav>

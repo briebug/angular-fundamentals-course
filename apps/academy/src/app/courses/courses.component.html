@@ -1,14 +1,28 @@
 <div class="courses-containers">
   <div class="courses-list">
-    <bba-courses-list [courses]="courses$ | async"
-      (selected)="selectCourse($event)"
-      (deleted)="deleteCourse($event)">
-    </bba-courses-list>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          Courses List
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <!-- LIST -->
+      </mat-card-content>
+    </mat-card>
   </div>
+
   <div class="course-details">
-    <bba-course-details [course]="selectedCourse"
-      (saved)="saveCourse($event)"
-      (cancelled)="resetCourse()">
-    </bba-course-details>
+    <mat-card>
+      <mat-card-title>
+        Select Course
+      </mat-card-title>
+      <mat-card-content>
+        <!-- DETAILS -->
+      </mat-card-content>
+      <mat-card-actions>
+        <!-- ACTIONS -->
+      </mat-card-actions>
+    </mat-card>
   </div>
 </div>

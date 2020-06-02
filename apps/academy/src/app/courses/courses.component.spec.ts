@@ -2,8 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '@bba/material';
-import { CourseDetailsComponent } from './course-details/course-details.component';
-import { CoursesListComponent } from './courses-list/courses-list.component';
 import { CoursesComponent } from './courses.component';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -20,9 +18,7 @@ describe('CoursesComponent', () => {
         NoopAnimationsModule,
       ],
       declarations: [
-        CoursesComponent,
-        CoursesListComponent,
-        CourseDetailsComponent
+        CoursesComponent
       ]
     })
     .compileComponents();

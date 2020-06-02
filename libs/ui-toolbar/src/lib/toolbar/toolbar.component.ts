@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
+
+export enum SidenavStatus {
+  OPENED = 'opened',
+  DISABLED = 'disabled',
+  CLOSED = 'closed'
+}
 
 @Component({
   selector: 'bba-toolbar',
@@ -6,9 +12,4 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent {
-  @Input() title = '';
-  @Input() isAuthenticated = false;
-  @Input() sidenavEnabled: boolean;
-  @Output() logout = new EventEmitter();
-  @Output() toggleSidenav = new EventEmitter();
 }

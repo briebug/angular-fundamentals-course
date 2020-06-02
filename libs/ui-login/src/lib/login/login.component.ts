@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Login } from '@bba/api-interfaces';
-import { AuthService } from '@bba/core-data';
 
 @Component({
   selector: 'bba-login',
@@ -13,12 +12,8 @@ export class LoginComponent implements OnInit {
     password: ''
   };
 
-  constructor(private authService: AuthService) { }
+  constructor() { }
 
   ngOnInit(): void {
-  }
-
-  login(loginInfo: Login) {
-    this.authService.login(loginInfo);
   }
 }
