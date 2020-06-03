@@ -6,6 +6,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent implements OnInit {
+  courses = [
+    {
+      id: '1',
+      title: 'Angular 9 Fundamentals',
+      description: 'Learn the fundamentals of Angular 9',
+      percentComplete: 26,
+      favorite: true
+    },
+    {
+      id: '2',
+      title: 'BrieBug Architecture',
+      description: 'Learn how we build software at BrieBug',
+      percentComplete: 0,
+      favorite: false
+    },
+  ]
+
   constructor() {}
   ngOnInit(): void {}
 }
