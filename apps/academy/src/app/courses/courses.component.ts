@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent implements OnInit {
+  currentCourse = null;
   courses = [
     {
       id: '1',
@@ -25,4 +26,16 @@ export class CoursesComponent implements OnInit {
 
   constructor() {}
   ngOnInit(): void {}
+
+  selectCourse(course) {
+    this.currentCourse = course;
+  }
+
+  deleteCourse(course) {
+    console.log('COURSE DELETED', course);
+  }
+
+  cancel() {
+    this.currentCourse = null;
+  }
 }
