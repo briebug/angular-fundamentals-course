@@ -14,3 +14,8 @@ export interface Course {
   percentComplete: number;
   favorite: boolean;
 }
+
+export interface Lesson {
+  title: string;
+  description?: string;
+}

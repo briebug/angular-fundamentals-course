@@ -1,4 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { LessonsService } from '@bba/core-data';
+import { Lesson } from '@bba/api-interfaces';
 
 @Component({
   selector: 'bba-home',
@@ -8,18 +10,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 export class HomeComponent implements OnInit, OnDestroy {
   currentLesson = null;
   courseTitle = 'Angular Fundamentals';
-  courseLessons = [
-    { title: 'Hello Angular' },
-    { title: 'Component Fundamentals' },
-    { title: 'Template Driven Forms' },
-    { title: 'Angular Services' },
-    { title: 'Server Communication' },
-    { title: 'Angular Routing' },
-    { title: 'Unit Testing Fundamentals' },
-    { title: 'Component Driven Architecture' },
-  ];
+  courseLessons: Lesson[] = this.lessonsService.lessons;
 
-  constructor() {
+  constructor(private lessonsService: LessonsService) {
     // EXECUTES IMMEDIATELY
     // CANNOT DIRECTLY TEST THE CONSTRUCTOR
     // AVOID ANY LOGIC OR SETUP IN THE CONSTRUCTOR
@@ -35,6 +28,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   reset() {
     this.currentLesson = null;
+  }
+
+  createLesson(lesson) {
+    this.lessonsService.create(lesson);
   }
 
   selectLesson(lesson) {
