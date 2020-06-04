@@ -28,17 +28,25 @@
   <div class="course-details">
     <mat-card>
       <mat-card-title>
-        <span *ngIf="currentCourse; else prompt">
+        <span *ngIf="currentCourse.id; else prompt">
           {{currentCourse.title}}
         </span>
         <ng-template #prompt>Select a Course</ng-template>
       </mat-card-title>
-      <mat-card-content>
-        <pre *ngIf="currentCourse">{{currentCourse | json}}</pre>
-      </mat-card-content>
-      <mat-card-actions>
-        <button type="button" mat-button (click)="cancel()">Cancel</button>
-      </mat-card-actions>
+      <form #form="ngForm" (ngSubmit)="saveCourse(currentCourse)">
+        <mat-card-content>
+          <mat-form-field>
+            <input matInput required name="title" placeholder="Title"
+              [(ngModel)]="currentCourse.title">
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+          <button [disabled]="form.invalid" type="submit" mat-button color="accent">Save</button>
+          <button type="button" mat-button (click)="cancel()">Cancel</button>
+        </mat-card-actions>
+      </form>
+      <pre>{{form.value | json}}</pre>
+      <pre>{{form.valid}}</pre>
     </mat-card>
   </div>
 </div>
