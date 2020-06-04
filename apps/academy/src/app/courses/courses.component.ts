@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Course } from '@bba/api-interfaces';
+import { CoursesService } from '@bba/core-data';
 
 @Component({
   selector: 'bba-courses',
@@ -6,34 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent implements OnInit {
-  currentCourse = null;
-  courses = [
-    {
-      id: '1',
-      title: 'Angular 9 Fundamentals',
-      description: 'Learn the fundamentals of Angular 9',
-      percentComplete: 26,
-      favorite: true
-    },
-    {
-      id: '2',
-      title: 'BrieBug Architecture',
-      description: 'Learn how we build software at BrieBug',
-      percentComplete: 0,
-      favorite: false
-    },
-  ]
+  currentCourse: Course = null;
+  courses: Course[] = [];
 
-  constructor() {}
+  constructor(private coursesService: CoursesService) {}
+
   ngOnInit(): void {
+    this.courses = this.coursesService.courses;
     this.resetCourse();
   }
 
-  selectCourse(course) {
+  selectCourse(course: Course) {
     this.currentCourse = course;
   }
 
-  saveCourse(course) {
+  saveCourse(course: Course) {
     if(course.id) {
       this.updateCourse(course);
     } else {
@@ -41,15 +30,15 @@ export class CoursesComponent implements OnInit {
     }
   }
 
-  createCourse(course) {
+  createCourse(course: Course) {
     console.log('COURSE CREATED', course);
   }
 
-  updateCourse(course) {
+  updateCourse(course: Course) {
     console.log('COURSE UPDATED', course);
   }
 
-  deleteCourse(course) {
+  deleteCourse(course: Course) {
     console.log('COURSE DELETED', course);
   }
 

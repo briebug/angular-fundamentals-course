@@ -8,7 +8,7 @@ export interface Login {
 }
 
 export interface Course {
-  id: number;
+  id: string;
   title: string;
   description: string;
   percentComplete: number;
