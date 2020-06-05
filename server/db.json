@@ -1,11 +1,32 @@
 {
   "courses": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Angular 9 Fundamentals",
       "description": "Learn the fundamentals of Angular 9",
-      "percentComplete": 26,
+      "percentComplete": 80,
       "favorite": true
+    },
+    {
+      "id": "2",
+      "title": "NestJS Fundamentals",
+      "description": "Learn the fundamentals of NestJS",
+      "percentComplete": 60,
+      "favorite": true
+    },
+    {
+      "id": "3",
+      "title": "Docker Fundamentals",
+      "description": "Learn the fundamentals of Docker",
+      "percentComplete": 0,
+      "favorite": false
+    },
+    {
+      "id": "4",
+      "title": "GraphQL Fundamentals",
+      "description": "Learn the fundamentals of GraphQL",
+      "percentComplete": 0,
+      "favorite": false
     }
   ]
 }

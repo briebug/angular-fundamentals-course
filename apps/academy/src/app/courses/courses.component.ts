@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from '@bba/api-interfaces';
 import { CoursesService } from '@bba/core-data';
+import { tap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'bba-courses',
@@ -14,12 +15,32 @@ export class CoursesComponent implements OnInit {
   constructor(private coursesService: CoursesService) {}
 
   ngOnInit(): void {
-    this.courses = this.coursesService.courses;
+    this.getCourses();
     this.resetCourse();
   }
 
   selectCourse(course: Course) {
     this.currentCourse = course;
+  }
+
+  getCourses() {
+    this.coursesService.all()
+      .pipe(
+        tap(courses => console.log('COURSES ON TAP!', courses)),
+        map(courses => courses.filter(course => course.favorite)),
+        map(courses => courses.map(course => this.transformCourse(course)))
+      )
+      .subscribe(
+        courses => this.courses = courses,
+        error => console.log(`ALERT! ${error}`)
+      );
+  }
+
+  private transformCourse(course: Course): Course {
+    return Object.assign({}, course, {
+      title: course.title.toUpperCase(),
+      percentComplete: 100
+    })
   }
 
   saveCourse(course: Course) {
@@ -31,15 +52,15 @@ export class CoursesComponent implements OnInit {
   }
 
   createCourse(course: Course) {
-    console.log('COURSE CREATED', course);
+    this.coursesService.create(course);
   }
 
   updateCourse(course: Course) {
-    console.log('COURSE UPDATED', course);
+    this.coursesService.update(course);
   }
 
   deleteCourse(course: Course) {
-    console.log('COURSE DELETED', course);
+    this.coursesService.delete(course.id);
   }
 
   cancel() {
