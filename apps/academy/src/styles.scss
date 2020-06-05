@@ -75,6 +75,11 @@ mat-sidenav {
 
 mat-card {
   border-radius: 0px !important;
+  margin-bottom: 20px;
+
+  .mat-card-header-text {
+    margin-left: 0px !important;
+  }
 }
 
 .nav-link {
@@ -113,6 +118,8 @@ mat-card {
   margin: 10px;
   flex-wrap: wrap;
 }
+
+
 
 .courses-containers {
   display: flex;

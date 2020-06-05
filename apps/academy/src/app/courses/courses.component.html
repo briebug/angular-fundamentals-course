@@ -27,12 +27,14 @@
 
   <div class="course-details">
     <mat-card>
-      <mat-card-title>
-        <span *ngIf="currentCourse.id; else prompt">
-          {{currentCourse.title}}
-        </span>
-        <ng-template #prompt>Select a Course</ng-template>
-      </mat-card-title>
+      <mat-card-header>
+        <mat-card-title>
+          <span *ngIf="currentCourse.id; else prompt">
+            {{currentCourse.title}}
+          </span>
+          <ng-template #prompt>Select a Course</ng-template>
+        </mat-card-title>
+      </mat-card-header>
       <form #form="ngForm" (ngSubmit)="saveCourse(currentCourse)">
         <mat-card-content>
           <mat-form-field>

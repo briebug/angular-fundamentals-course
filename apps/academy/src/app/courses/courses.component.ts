@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from '@bba/api-interfaces';
 import { CoursesService } from '@bba/core-data';
-import { tap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'bba-courses',
@@ -12,7 +11,9 @@ export class CoursesComponent implements OnInit {
   currentCourse: Course = null;
   courses: Course[] = [];
 
-  constructor(private coursesService: CoursesService) { }
+  constructor(
+    private coursesService: CoursesService
+  ) { }
 
   ngOnInit(): void {
     this.getCourses();
@@ -26,7 +27,9 @@ export class CoursesComponent implements OnInit {
   getCourses() {
     this.coursesService.all()
       .subscribe(
-        courses => this.courses = courses,
+        courses => {
+          this.courses = courses;
+        },
         error => console.log(`ALERT! ${error}`)
       );
   }
