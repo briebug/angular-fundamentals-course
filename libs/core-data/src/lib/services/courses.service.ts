@@ -31,7 +31,7 @@ export class CoursesService {
     //   }),
     //   params: new HttpParams().set('utm', 'REFERRAL_SOURCE')
     // };
-    return this.http.get<Course[]>(this.getUrl(), httpOptions)
+    return this.http.get<Course[]>(this.getUrl())
       .pipe(
         catchError(this.handleError)
       );
