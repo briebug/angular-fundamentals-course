@@ -12,7 +12,7 @@ export class CoursesComponent implements OnInit {
   currentCourse: Course = null;
   courses: Course[] = [];
 
-  constructor(private coursesService: CoursesService) {}
+  constructor(private coursesService: CoursesService) { }
 
   ngOnInit(): void {
     this.getCourses();
@@ -25,26 +25,14 @@ export class CoursesComponent implements OnInit {
 
   getCourses() {
     this.coursesService.all()
-      .pipe(
-        tap(courses => console.log('COURSES ON TAP!', courses)),
-        map(courses => courses.filter(course => course.favorite)),
-        map(courses => courses.map(course => this.transformCourse(course)))
-      )
       .subscribe(
         courses => this.courses = courses,
         error => console.log(`ALERT! ${error}`)
       );
   }
 
-  private transformCourse(course: Course): Course {
-    return Object.assign({}, course, {
-      title: course.title.toUpperCase(),
-      percentComplete: 100
-    })
-  }
-
   saveCourse(course: Course) {
-    if(course.id) {
+    if (course.id) {
       this.updateCourse(course);
     } else {
       this.createCourse(course);
@@ -52,18 +40,35 @@ export class CoursesComponent implements OnInit {
   }
 
   createCourse(course: Course) {
-    this.coursesService.create(course);
+    this.coursesService.create(course)
+      .subscribe(
+        result => this.refreshCourses(),
+        error => console.log(`ALERT! ${error}`)
+      );
   }
 
   updateCourse(course: Course) {
-    this.coursesService.update(course);
+    this.coursesService.update(course)
+      .subscribe(
+        result => this.refreshCourses(),
+        error => console.log(`ALERT! ${error}`)
+      );
   }
 
   deleteCourse(course: Course) {
-    this.coursesService.delete(course.id);
+    this.coursesService.delete(course.id)
+      .subscribe(
+        result => this.refreshCourses(),
+        error => console.log(`ALERT! ${error}`)
+      );
   }
 
   cancel() {
+    this.resetCourse();
+  }
+
+  private refreshCourses() {
+    this.getCourses();
     this.resetCourse();
   }
 
@@ -76,5 +81,12 @@ export class CoursesComponent implements OnInit {
       favorite: false
     }
     this.selectCourse(emptyCourse);
+  }
+
+  private transformCourse(course: Course): Course {
+    return Object.assign({}, course, {
+      title: course.title.toUpperCase(),
+      percentComplete: 100
+    })
   }
 }

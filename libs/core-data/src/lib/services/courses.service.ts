@@ -38,19 +38,31 @@ export class CoursesService {
   }
 
   find(courseId: string) {
-    return this.http.get<Course>(this.getUrlById(courseId));
+    return this.http.get<Course>(this.getUrlById(courseId))
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   create(course: Course) {
-    // Complete this method
+    return this.http.post(this.getUrl(), course)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   update(course: Course) {
-    // Complete this method
+    return this.http.put(this.getUrlById(course.id), course)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   delete(courseId: string) {
-    // Complete this method
+    return this.http.delete(this.getUrlById(courseId))
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   private handleError(error: HttpErrorResponse) {
