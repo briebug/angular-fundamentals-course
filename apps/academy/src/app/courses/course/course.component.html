@@ -1,0 +1,2 @@
+<pre *ngIf="currentCourse; else loading">{{currentCourse | json}}</pre>
+<ng-template #loading>Loading...</ng-template>

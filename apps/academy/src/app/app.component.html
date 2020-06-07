@@ -20,7 +20,14 @@
         <img src="assets/images/logo.svg" alt="Logo">
       </span>
       <nav>
-        <!-- NAVIGATION LINKS -->
+        <a mat-button class="nav-link"
+          *ngFor="let link of links"
+          [routerLink]="link.path" routerLinkActive="active">
+          <mat-icon>
+            {{link.icon}}
+          </mat-icon>
+          {{link.title}}
+        </a>
       </nav>
     </ng-container>
   </mat-sidenav>
