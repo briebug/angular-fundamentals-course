@@ -4,6 +4,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '@bba/material';
 import { CoursesComponent } from './courses.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('CoursesComponent', () => {
   let component: CoursesComponent;
@@ -16,6 +17,7 @@ describe('CoursesComponent', () => {
         HttpClientModule,
         MaterialModule,
         NoopAnimationsModule,
+        RouterTestingModule
       ],
       declarations: [
         CoursesComponent
