@@ -7,11 +7,11 @@ import { LoggingInterceptor } from '@bba/core-data';
 import { MaterialModule } from '@bba/material';
 import { UiToolbarModule } from '@bba/ui-toolbar';
 import { AppComponent } from './app.component';
+import { CourseLessonsComponent } from './courses/course-lessons/course-lessons.component';
+import { CourseComponent } from './courses/course/course.component';
 import { CoursesComponent } from './courses/courses.component';
 import { HomeComponent } from './home/home.component';
 import { RoutingModule } from './routing.module';
-import { CourseComponent } from './courses/course/course.component';
-import { CourseLessonsComponent } from './courses/course-lessons/course-lessons.component';
 import { LessonsModule } from './lessons/lessons.module';
 
 @NgModule({
@@ -29,8 +29,7 @@ import { LessonsModule } from './lessons/lessons.module';
     HttpClientModule,
     MaterialModule,
     RoutingModule,
-    UiToolbarModule,
-    LessonsModule
+    UiToolbarModule
   ],
   providers: [
     {

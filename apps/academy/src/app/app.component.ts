@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   links = [
     { path: '/home', icon: 'home', title: 'Home' },
     { path: '/courses', icon: 'view_list', title: 'Courses' },
-    { path: '/lessons', icon: 'ballot', title: 'Lessons' },
+    { path: '/lessons', icon: 'polling', title: 'Lessons' },
   ];
 
   constructor(private router: Router) {}
