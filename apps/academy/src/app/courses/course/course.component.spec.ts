@@ -1,32 +1,27 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { CourseComponent } from './course.component';
-import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
+import { DebugElement } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { CoursesService } from '@bba/core-data';
+import { of } from 'rxjs';
+import { CourseComponent } from './course.component';
 
-const mockEmptyCourse = {
-  id: null,
-  title: 'Empty Course',
-  description: '',
-  percentComplete: 0,
-  favorite: false
-}
-
-const mockCourse = {
-  id: '1',
-  title: 'Course',
-  description: '',
-  percentComplete: 0,
-  favorite: false
+const mockCoursesService = {
+  find: (courseId) => of({})
 }
 
 describe('CourseComponent', () => {
   let component: CourseComponent;
   let fixture: ComponentFixture<CourseComponent>;
+  let de: DebugElement;
+  let coursesService: CoursesService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CourseComponent ],
+      providers: [
+        { provide: CoursesService, useValue: mockCoursesService }
+      ],
       imports: [
         RouterTestingModule,
         HttpClientModule
@@ -38,6 +33,9 @@ describe('CourseComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CourseComponent);
     component = fixture.componentInstance;
+    de = fixture.debugElement;
+    coursesService = de.injector.get(CoursesService);
+
     fixture.detectChanges();
   });
 
@@ -45,7 +43,10 @@ describe('CourseComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('it should select a course', () => {
-
+  it('should call coursesService.find on loadCourse', () => {
+    const courseId = 1;
+    spyOn(coursesService, 'find').and.callThrough();
+    component.loadCourse(courseId);
+    expect(coursesService.find).toHaveBeenCalledWith(courseId);
   });
 });

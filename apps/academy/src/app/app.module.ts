@@ -12,7 +12,6 @@ import { CourseComponent } from './courses/course/course.component';
 import { CoursesComponent } from './courses/courses.component';
 import { HomeComponent } from './home/home.component';
 import { RoutingModule } from './routing.module';
-import { LessonsModule } from './lessons/lessons.module';
 
 @NgModule({
   declarations: [

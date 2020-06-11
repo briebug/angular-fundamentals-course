@@ -28,5 +28,39 @@
       "percentComplete": 0,
       "favorite": false
     }
+  ],
+  "lessons": [
+    {
+      "id": "1",
+      "title": "Hello Angular"
+    },
+    {
+      "id": "2",
+      "title": "Component Fundamentals"
+    },
+    {
+      "id": "3",
+      "title": "Template Driven Forms"
+    },
+    {
+      "id": "4",
+      "title": "Angular Services"
+    },
+    {
+      "id": "5",
+      "title": "Server Communication"
+    },
+    {
+      "id": "6",
+      "title": "Angular Routing"
+    },
+    {
+      "id": "7",
+      "title": "Unit Testing Fundamentals"
+    },
+    {
+      "id": "8",
+      "title": "Component Driven Architecture"
+    }
   ]
 }
