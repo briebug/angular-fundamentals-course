@@ -1,6 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LessonDetailsComponent } from './lesson-details.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from '@bba/material';
+import { FormsModule } from '@angular/forms';
+
+const mockEmptyLesson = {
+  id: null,
+  title: 'Mock Empty Lesson',
+  description: '',
+};
 
 describe('LessonDetailsComponent', () => {
   let component: LessonDetailsComponent;
@@ -8,6 +17,11 @@ describe('LessonDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        FormsModule,
+        MaterialModule,
+        NoopAnimationsModule,
+      ],
       declarations: [ LessonDetailsComponent ]
     })
     .compileComponents();
@@ -16,6 +30,7 @@ describe('LessonDetailsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LessonDetailsComponent);
     component = fixture.componentInstance;
+    component.lesson = mockEmptyLesson;
     fixture.detectChanges();
   });
 

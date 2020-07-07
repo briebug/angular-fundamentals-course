@@ -22,6 +22,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     // SETUP LOGIC GOES HERE
   }
 
+  getLessons() {
+    this.lessonsService.all()
+      .subscribe(lessons => this.courseLessons = lessons);
+  }
+
   ngOnDestroy(): void {
     // TEAR DOWN LOGIC GOES HERE
   }

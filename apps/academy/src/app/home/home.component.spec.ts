@@ -4,6 +4,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { LessonsService } from '@bba/core-data';
 import { MaterialModule } from '@bba/material';
 import { HomeComponent } from './home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const mockLesson = {
   id: '1',
@@ -20,6 +21,7 @@ describe('HomeComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ HomeComponent ],
       imports: [
+        HttpClientModule,
         MaterialModule,
         NoopAnimationsModule,
       ]
