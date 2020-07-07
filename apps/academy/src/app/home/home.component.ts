@@ -10,7 +10,7 @@ import { Lesson } from '@bba/api-interfaces';
 export class HomeComponent implements OnInit, OnDestroy {
   currentLesson = null;
   courseTitle = 'Angular Fundamentals';
-  courseLessons: Lesson[] = this.lessonsService.lessons;
+  courseLessons: Lesson[] = [];
 
   constructor(private lessonsService: LessonsService) {
     // EXECUTES IMMEDIATELY

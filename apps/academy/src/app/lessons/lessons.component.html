@@ -1,3 +1,21 @@
-<p>lessons works!</p>
+<div class="courses-containers">
+  <div class="courses-list">
+    <bba-lessons-list
+      [lessons]="lessons"
+      (selected)="selectLesson($event)"
+      (deleted)="deleteLesson($event)">
+    </bba-lessons-list>
+  </div>
 
-<router-outlet></router-outlet>
+  <div class="course-details">
+    <bba-lesson-details
+      [lesson]="currentLesson"
+      (saved)="saveLesson($event)"
+      (cancelled)="cancel()">
+    </bba-lesson-details>
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+
+

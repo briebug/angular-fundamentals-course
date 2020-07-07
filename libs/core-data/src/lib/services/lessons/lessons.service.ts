@@ -1,33 +1,42 @@
 import { Injectable } from '@angular/core';
 import { Lesson } from '@bba/api-interfaces';
+import { HttpClient } from '@angular/common/http';
+
+export const BASE_URL = 'http://localhost:3000/';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LessonsService {
-  lessons: Lesson[] = [
-    { title: 'Hello Angular' },
-    { title: 'Component Fundamentals' },
-    { title: 'Template Driven Forms' },
-    { title: 'Angular Services' },
-    { title: 'Server Communication' },
-    { title: 'Angular Routing' },
-    { title: 'Unit Testing Fundamentals' },
-    { title: 'Component Driven Architecture' },
-  ];
+  model = 'lessons';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  create(lesson) {
-
+  all() {
+    return this.http.get<Lesson[]>(this.getUrl());
   }
 
-  update(lesson) {
-
+  find(lessonId: string) {
+    return this.http.get<Lesson>(this.getUrlById(lessonId));
   }
 
-  delete(lesson) {
-
+  create(lesson: Lesson) {
+    return this.http.post(this.getUrl(), lesson);
   }
 
+  update(lesson: Lesson) {
+    return this.http.put(this.getUrlById(lesson.id), lesson);
+  }
+
+  delete(lessonId: string) {
+    return this.http.delete(this.getUrlById(lessonId));
+  }
+
+  private getUrl() {
+    return `${BASE_URL}${this.model}`;
+  }
+
+  private getUrlById(id) {
+    return `${this.getUrl()}/${id}`
+  }
 }
