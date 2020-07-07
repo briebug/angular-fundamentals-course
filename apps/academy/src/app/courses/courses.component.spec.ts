@@ -8,6 +8,8 @@ import { CoursesService } from '@bba/core-data';
 import { MaterialModule } from '@bba/material';
 import { of } from 'rxjs';
 import { CoursesComponent } from './courses.component';
+import { CoursesListComponent } from './courses-list/courses-list.component';
+import { CourseDetailsComponent } from './course-details/course-details.component';
 
 const mockEmptyCourse = {
   id: null,
@@ -51,7 +53,9 @@ describe('CoursesComponent', () => {
         { provide: CoursesService, useValue: mockCoursesService }
       ],
       declarations: [
-        CoursesComponent
+        CoursesComponent,
+        CoursesListComponent,
+        CourseDetailsComponent,
       ]
     })
     .compileComponents();

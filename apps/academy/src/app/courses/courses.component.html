@@ -1,67 +1,18 @@
 <div class="courses-containers">
   <div class="courses-list">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>
-          Courses List
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <mat-list>
-          <mat-list-item
-            *ngFor="let course of courses"
-            (click)="selectCourse(course)">
-            <h3 matLine>{{ course.title }}</h3>
-            <p matLine>
-              {{course.description}}
-            </p>
-            <button mat-icon-button color="warn"
-              (click)="deleteCourse(course);$event.stopImmediatePropagation()">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </mat-list-item>
-        </mat-list>
-      </mat-card-content>
-    </mat-card>
+    <bba-courses-list
+      [courses]="courses"
+      (selected)="selectCourse($event)"
+      (deleted)="deleteCourse($event)">
+    </bba-courses-list>
   </div>
 
   <div class="course-details">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>
-          <span *ngIf="currentCourse.id; else prompt">
-            {{currentCourse.title}}
-          </span>
-          <ng-template #prompt>Select a Course</ng-template>
-        </mat-card-title>
-      </mat-card-header>
-      <form #form="ngForm" (ngSubmit)="saveCourse(currentCourse)">
-        <mat-card-content>
-          <mat-form-field>
-            <input matInput required name="title" placeholder="Title"
-              [(ngModel)]="currentCourse.title">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput name="description" placeholder="Description"
-              [(ngModel)]="currentCourse.description">
-          </mat-form-field>
-          <section>
-            <h4>{{currentCourse.percentComplete}}% Complete</h4>
-            <mat-slider name="percentComplete" class="full-width"
-              min="0" max="100" thumbLabel [(ngModel)]="currentCourse.percentComplete">
-            </mat-slider>
-          </section>
-          <section>
-            <mat-checkbox name="favorite" [(ngModel)]="currentCourse.favorite">Favorite</mat-checkbox>
-          </section>
-        </mat-card-content>
-        <mat-card-actions>
-          <button [disabled]="form.invalid" type="submit" mat-button color="accent">Save</button>
-          <button type="button" mat-button (click)="cancel()">Cancel</button>
-        </mat-card-actions>
-      </form>
-    </mat-card>
-
+    <bba-course-details
+      [course]="currentCourse"
+      (saved)="saveCourse($event)"
+      (cancelled)="cancel()">
+    </bba-course-details>
     <router-outlet></router-outlet>
   </div>
 </div>

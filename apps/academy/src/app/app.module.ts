@@ -12,6 +12,8 @@ import { CourseComponent } from './courses/course/course.component';
 import { CoursesComponent } from './courses/courses.component';
 import { HomeComponent } from './home/home.component';
 import { RoutingModule } from './routing.module';
+import { CoursesListComponent } from './courses/courses-list/courses-list.component';
+import { CourseDetailsComponent } from './courses/course-details/course-details.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { RoutingModule } from './routing.module';
     HomeComponent,
     CoursesComponent,
     CourseComponent,
-    CourseLessonsComponent
+    CourseLessonsComponent,
+    CoursesListComponent,
+    CourseDetailsComponent
   ],
   imports: [
     BrowserAnimationsModule,
