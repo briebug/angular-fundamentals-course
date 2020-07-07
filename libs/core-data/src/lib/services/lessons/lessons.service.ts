@@ -5,16 +5,7 @@ import { Lesson } from '@bba/api-interfaces';
   providedIn: 'root'
 })
 export class LessonsService {
-  lessons: Lesson[] = [
-    { title: 'Hello Angular' },
-    { title: 'Component Fundamentals' },
-    { title: 'Template Driven Forms' },
-    { title: 'Angular Services' },
-    { title: 'Server Communication' },
-    { title: 'Angular Routing' },
-    { title: 'Unit Testing Fundamentals' },
-    { title: 'Component Driven Architecture' },
-  ];
+  lessons: Lesson[] = [];
 
   constructor() { }
 
