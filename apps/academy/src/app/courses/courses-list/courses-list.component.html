@@ -6,8 +6,8 @@
   </mat-card-header>
   <mat-card-content>
     <mat-list>
-      <mat-list-item *ngFor="let course of courses" (click)="selected.emit(course)">
-        <h3 matLine> {{ course.title | titlecase }} </h3>
+      <mat-list-item *ngFor="let course of courses" (click)="selected.emit(course)" data-cy="list-item">
+        <h3 matLine data-cy="item-title"> {{ course.title | titlecase }} </h3>
         <p matLine>
           {{ course.description }}
         </p>

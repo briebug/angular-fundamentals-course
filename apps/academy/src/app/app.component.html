@@ -9,7 +9,7 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav
     *ngIf="(isAuthenticated$ | async) as authenticated"
-    [opened]="sidenavStatus === 'opened'" mode="side" class="app-sidenav">
+    [opened]="sidenavStatus === 'opened'" mode="side" class="app-sidenav" data-cy="sidenav">
     <ng-container>
       <span class="logo">
         <a [routerLink]="'/'">
@@ -19,7 +19,7 @@
       <nav>
         <div>
           <div *ngFor="let link of links">
-            <a mat-button class="nav-link" [routerLink]="link.path" routerLinkActive="active">
+            <a mat-button class="nav-link" [routerLink]="link.path" routerLinkActive="active" data-cy="nav-link">
               <mat-icon>
                 {{link.icon}}
               </mat-icon>

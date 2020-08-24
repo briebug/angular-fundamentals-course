@@ -1,13 +1,29 @@
-import { getGreeting } from '../support/app.po';
+import { getNavItem, checkLocation } from '../support/app.po';
 
-describe('academy', () => {
-  beforeEach(() => cy.visit('/'));
+describe('dashboard', () => {
+  beforeEach(() => cy.login('/'));
 
-  it('should display welcome message', () => {
-    // Custom command example, see `../support/commands.ts` file
-    cy.login('my-email@something.com', 'myPassword');
+  it('should close menu', () => {
+    cy.get('[data-cy=menu]').click();
 
-    // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome to academy!');
+    cy.get('[data-cy=sidenav').should('be.hidden');
+  });
+
+  it('should logout', () => {
+    cy.get('[data-cy=logout]').click();
+
+    checkLocation('/login');
+  });
+
+  describe('should navigate to', () => {
+    it('Home', () => {
+      getNavItem(0).click();
+      checkLocation('/home');
+    });
+
+    it('Courses', () => {
+      getNavItem(1).click();
+      checkLocation('/courses');
+    });
   });
 });

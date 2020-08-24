@@ -108,7 +108,9 @@
           "options": {
             "cypressConfig": "apps/academy-e2e/cypress.json",
             "tsConfig": "apps/academy-e2e/tsconfig.e2e.json",
-            "devServerTarget": "academy:serve"
+            "devServerTarget": "academy:serve",
+            "watch": true,
+            "exit": false
           },
           "configurations": {
             "production": {
